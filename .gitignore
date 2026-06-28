@@ -1,9 +1,10 @@
 # Rust / Soroban
 target/
 **/target/
-Cargo.lock
 .soroban/
 *.wasm
+# NOTE: Cargo.lock is intentionally committed for reproducible CI builds
+# (this workspace is binaries/contracts, not a published library).
 
 # Node
 node_modules/

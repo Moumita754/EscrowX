@@ -6,6 +6,10 @@ EscrowX lets a **buyer** and a **seller** transact safely. The buyer creates an 
 
 ---
 
+## Demo Video : [youtube](https://youtu.be/X_TeNDAFMiw)
+## live Website Link : [vercel]()
+
+
 ## ✨ Features
 
 - **Trustless escrow lifecycle** — `Pending → Funded → Delivered → Completed` (or `Refunded`), enforced on-chain.

@@ -31,7 +31,11 @@ fn setup() -> Setup<'static> {
     let vault_id = env.register_contract(None, PaymentVault);
     let vault = PaymentVaultClient::new(&env, &vault_id);
 
-    env.mock_all_auths();
+    // The vault is normally driven by the Escrow contract, which authorizes the
+    // payer at the root invocation. These tests call the vault directly, so the
+    // token transfer's `from.require_auth()` happens in a nested (non-root)
+    // call. Allow non-root auth so mock auths cover it.
+    env.mock_all_auths_allowing_non_root_auth();
     StellarAssetClient::new(&env, &token_address).mint(&buyer, &1_000);
     vault.initialize(&escrow, &token_address);
 

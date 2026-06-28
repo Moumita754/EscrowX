@@ -47,7 +47,6 @@ jobs:
     needs: ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment: production
     # NOTE: vercel CLI runs from the REPO ROOT (no working-directory). The
     # Vercel project's "Root Directory = frontend" setting is pulled by
     # `vercel pull` and applied by `vercel build`, mirroring Git deploys.

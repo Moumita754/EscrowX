@@ -25,16 +25,32 @@ const PASSPHRASE_BY_NETWORK: Record<NetworkName, string> = {
 const DEFAULT_TESTNET_TOKEN =
   "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC";
 
-const network = (import.meta.env.VITE_NETWORK ?? "testnet") as NetworkName;
+// Read an env var, treating empty / whitespace-only values as "not set".
+// `??` alone keeps an empty string (""), which for a URL var produces
+// `new URL("")` → "Invalid URL" and crashes the app at startup. This guard
+// makes a blank Vercel variable fall back to the safe default instead.
+const env = (value: string | undefined): string | undefined => {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+};
+
+// Normalise the network so an unknown/blank value can never yield an undefined
+// RPC / Horizon / passphrase (which would also crash URL construction).
+const VALID_NETWORKS: NetworkName[] = ["testnet", "mainnet", "futurenet"];
+const requestedNetwork = env(import.meta.env.VITE_NETWORK);
+const network: NetworkName =
+  requestedNetwork && (VALID_NETWORKS as string[]).includes(requestedNetwork)
+    ? (requestedNetwork as NetworkName)
+    : "testnet";
 
 export const config = {
   network,
   // The Escrow contract — the only contract the frontend ever calls.
-  contractId: import.meta.env.VITE_CONTRACT_ID ?? "",
+  contractId: env(import.meta.env.VITE_CONTRACT_ID) ?? "",
   // The PaymentVault contract — shown for transparency; never called directly.
-  vaultId: import.meta.env.VITE_VAULT_ID ?? "",
-  tokenId: import.meta.env.VITE_TOKEN_ID ?? DEFAULT_TESTNET_TOKEN,
-  rpcUrl: import.meta.env.VITE_SOROBAN_RPC_URL ?? RPC_BY_NETWORK[network],
+  vaultId: env(import.meta.env.VITE_VAULT_ID) ?? "",
+  tokenId: env(import.meta.env.VITE_TOKEN_ID) ?? DEFAULT_TESTNET_TOKEN,
+  rpcUrl: env(import.meta.env.VITE_SOROBAN_RPC_URL) ?? RPC_BY_NETWORK[network],
   horizonUrl: HORIZON_BY_NETWORK[network],
   networkPassphrase: PASSPHRASE_BY_NETWORK[network],
   explorerBaseUrl:

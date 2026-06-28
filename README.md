@@ -20,7 +20,7 @@ EscrowX lets a **buyer** and a **seller** transact safely. The buyer creates an 
 
 | Contract | Address | Explorer |
 |---|---|---|
-| **Escrow** (the app calls this) | `CCOZZ4KJE2TJIVYKJFI7NP53ZNYRYIWZMFFGIEMSRAOIMG4AAWJHMGWB` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CCOZZ4KJE2TJIVYKJFI7NP53ZNYRYIWZMFFGIEMSRAOIMG4AAWJHMGWB) · [Stellar Lab](https://lab.stellar.org/smart-contracts/contract-explorer?$=network$id=testnet&label=Testnet&horizonUrl=https:////horizon-testnet.stellar.org&rpcUrl=https:////soroban-testnet.stellar.org&passphrase=Test%20SDF%20Network%20/;%20September%202015;;) |
+| **Escrow** (the app calls this) | `CCOZZ4KJE2TJIVYKJFI7NP53ZNYRYIWZMFFGIEMSRAOIMG4AAWJHMGWB` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CCOZZ4KJE2TJIVYKJFI7NP53ZNYRYIWZMFFGIEMSRAOIMG4AAWJHMGWB) |
 | **PaymentVault** (custodies funds) | `CAVGTJ753FML7YWLDGPP4CEHU5MGFFCKOMM5XYP2O42JGZKWKJA6WUNG` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CAVGTJ753FML7YWLDGPP4CEHU5MGFFCKOMM5XYP2O42JGZKWKJA6WUNG) |
 | **Payment Asset** (native XLM SAC) | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC) |
 

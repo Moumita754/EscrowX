@@ -15,8 +15,7 @@ Every step is enforced by smart contracts, so funds are never held by a person o
 ## Demo Video : [youtube](https://youtu.be/X_TeNDAFMiw)
 ## live Website Link : [vercel](https://escrow-x-neon.vercel.app/)
 ## FeedBack Form: [google form](https://docs.google.com/forms/d/1Dwvo4hPEJ4e5Cxy5M8VsC1Re3Cd-bO48PdCCwFL27uk/viewform?edit_requested=true)
-## Feedback Sheet: 
-[google sheet](https://docs.google.com/spreadsheets/d/1vilamgP42YUIzEAMScySXr090Vy0apxv9g8k8BCqcV0/edit?usp=sharing)
+## Feedback Sheet: [google sheet](https://docs.google.com/spreadsheets/d/1vilamgP42YUIzEAMScySXr090Vy0apxv9g8k8BCqcV0/edit?usp=sharing)
 
 
 ## Deployed Contracts (Stellar Testnet)

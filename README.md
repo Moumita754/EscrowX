@@ -103,10 +103,10 @@ EscrowX/
 ---
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Landing page
-![Landing page](./screenshot/landing_page.png)
+![Landing page](screenshot/landing_page.png)
 
 ### Dashboard
 ![Dashboard](screenshot/dashboard.png)
@@ -123,10 +123,8 @@ EscrowX/
 ### Completed escrow
 ![Escrow complete](screenshot/escrow_complete.png)
 
-
-### phone responsive
-
-![phone responsive](screenshot/ph_response.png)
+### Phone responsive
+![Phone responsive](screenshot/ph_response.png)
 
 ---
 

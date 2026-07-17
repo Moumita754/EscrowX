@@ -1,59 +1,50 @@
 # EscrowX
 
-> A trustless escrow dApp on **Stellar / Soroban**. Lock funds in a smart contract, deliver the work, and release payment only when both parties are satisfied — no middleman holding your money.
+> A trustless escrow dApp on **Stellar / Soroban**. Lock funds in a smart contract, deliver the work, and release payment only when both sides agree — no middleman holding the money.
 
-EscrowX lets a **buyer** and a **seller** transact safely. The buyer creates an escrow and locks funds in an on-chain vault. The seller marks the work delivered. The buyer then releases the payment to the seller — or refunds it back — all enforced by smart contracts. Funds are never held by a person or a centralized server.
+## About
 
----
+EscrowX lets a **buyer** and a **seller** transact safely on the Stellar blockchain.
+
+1. The buyer creates an escrow and locks funds in an on-chain vault.
+2. The seller delivers the work and marks it delivered.
+3. The buyer releases the payment to the seller — or refunds it back.
+
+Every step is enforced by smart contracts, so funds are never held by a person or a centralized server. The whole lifecycle — `Pending → Funded → Delivered → Completed` (or `Refunded`) — lives on-chain. Two contracts split the work: an **Escrow** contract owns the logic and state, while a separate **PaymentVault** contract custodies the funds and only accepts calls from the Escrow contract.
 
 ## Demo Video : [youtube](https://youtu.be/X_TeNDAFMiw)
 ## live Website Link : [vercel](https://escrow-x-neon.vercel.app/)
 ## FeedBack Form: [google form](https://docs.google.com/forms/d/1Dwvo4hPEJ4e5Cxy5M8VsC1Re3Cd-bO48PdCCwFL27uk/viewform?edit_requested=true)
 ## Feedback Sheet: 
 [google sheet](https://docs.google.com/spreadsheets/d/1vilamgP42YUIzEAMScySXr090Vy0apxv9g8k8BCqcV0/edit?usp=sharing)
-## ✨ Features
 
-- **Trustless escrow lifecycle** — `Pending → Funded → Delivered → Completed` (or `Refunded`), enforced on-chain.
-- **Separation of concerns** — an Escrow contract orchestrates state, a separate PaymentVault contract custodies funds.
-- **Multi-wallet support** — connect with **Freighter** (browser extension) or **Albedo** (web popup).
-- **Live updates** — wrong-network detection, account-switch handling, activity history, and notifications.
-- **Clean dashboard** — create escrows, track status, and act on them from one place.
 
----
+## Deployed Contracts (Stellar Testnet)
 
-## 🔗 Deployed Contracts (Stellar Testnet)
+| Contract | Contract ID |
+|---|---|
+| **Escrow** (the app calls this) | `CCQGEVIMQQR2JO22WRLSBLADPOXGLHGTF5I63WBEP2Q6ZGJED3QXY3R4` |
+| **PaymentVault** (custodies funds) | `CCVTGEVTRY4CFIJUIS6YP3OTY5LO5HSQTZCXAW57ZHNKTEZCAQ6QDQRP` |
+| **Payment Asset** (native XLM SAC) | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` |
 
-| Contract | Address | Explorer |
-|---|---|---|
-| **Escrow** (the app calls this) | `CCOZZ4KJE2TJIVYKJFI7NP53ZNYRYIWZMFFGIEMSRAOIMG4AAWJHMGWB` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CCOZZ4KJE2TJIVYKJFI7NP53ZNYRYIWZMFFGIEMSRAOIMG4AAWJHMGWB) |
-| **PaymentVault** (custodies funds) | `CAVGTJ753FML7YWLDGPP4CEHU5MGFFCKOMM5XYP2O42JGZKWKJA6WUNG` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CAVGTJ753FML7YWLDGPP4CEHU5MGFFCKOMM5XYP2O42JGZKWKJA6WUNG) |
-| **Payment Asset** (native XLM SAC) | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC) |
+ Escrow → [Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CCQGEVIMQQR2JO22WRLSBLADPOXGLHGTF5I63WBEP2Q6ZGJED3QXY3R4)
+- PaymentVault → [Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CCVTGEVTRY4CFIJUIS6YP3OTY5LO5HSQTZCXAW57ZHNKTEZCAQ6QDQRP)
 
-> **Network:** Testnet · **RPC:** `https://soroban-testnet.stellar.org`
-> To explore a contract in **Stellar Lab**, open <https://lab.stellar.org>, switch the network to **Testnet**, go to **Smart Contracts → Contract Explorer**, and paste the contract address above.
 
----
-
-## 🧰 Tech Stack
+## Tech Stack
 
 **Smart Contracts**
-- [Rust](https://www.rust-lang.org/) + [Soroban SDK](https://soroban.stellar.org/) `21.7`
+- Rust + Soroban SDK
 - Cargo workspace with two contracts: `escrow` and `payment_vault`
-- Cross-contract invocation between them
 
 **Frontend**
-- [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- [Vite 5](https://vitejs.dev/) (build tool)
-- [Tailwind CSS](https://tailwindcss.com/) + [Framer Motion](https://www.framer.com/motion/)
-- [@stellar/stellar-sdk](https://github.com/stellar/js-stellar-sdk) for RPC/transactions
-- [Freighter API](https://www.freighter.app/) + [Albedo](https://albedo.link/) wallets
-- [TanStack Query](https://tanstack.com/query) (data fetching), [React Router](https://reactrouter.com/), [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+- React + TypeScript, built with Vite
+- Tailwind CSS
+- `@stellar/stellar-sdk` for RPC / transactions
+- Freighter & Albedo wallet support
 
-**Tooling & CI/CD**
-- [Vitest](https://vitest.dev/) (frontend tests), Rust `cargo test` (contract tests)
-- GitHub Actions (`contract.yml`, `frontend.yml`)
-- [Vercel](https://vercel.com/) (frontend hosting)
-
+**Hosting**
+- Vercel (frontend)
 ---
 
 ## 🏛️ Architecture
@@ -89,14 +80,6 @@ create_escrow ──► Pending ──► deposit_funds ──► Funded ──�
                                           refund_payment  ──► Refunded    (buyer refunded)
 ```
 
-| Function | Who calls it | Effect |
-|---|---|---|
-| `create_escrow` | Buyer | Registers a new agreement (`Pending`). No funds move. |
-| `deposit_funds` | Buyer | Locks funds in the vault → `Funded`. |
-| `mark_delivered` | Seller | Confirms delivery → `Delivered`. |
-| `release_payment` | Buyer | Pays the seller from the vault → `Completed`. |
-| `refund_payment` | Buyer | Returns funds to the buyer → `Refunded`. |
-
 ### Repository layout
 
 ```
@@ -117,71 +100,6 @@ EscrowX/
 ├── .github/workflows/         # CI/CD: contract.yml + frontend.yml
 ├── Cargo.toml                 # Rust workspace manifest
 └── rust-toolchain.toml        # Pinned Rust toolchain + wasm target
-```
-
----
-
-## 🚀 Run Locally
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) **20+** and npm
-- [Rust](https://www.rust-lang.org/tools/install) (stable) with the `wasm32-unknown-unknown` target — only needed if you want to build/test the contracts
-- A wallet: [Freighter](https://www.freighter.app/) extension, or use [Albedo](https://albedo.link/) (no install)
-- Some **testnet XLM** — fund your wallet at [friendbot](https://laboratory.stellar.org/#account-creator?network=test)
-
-### 1. Frontend (the app)
-
-```bash
-# clone
-git clone https://github.com/Moumita754/EscrowX.git
-cd EscrowX/frontend
-
-# install dependencies
-npm install
-
-# set up environment
-cp .env.example .env
-# The default .env already points to the deployed testnet contracts above.
-
-# run the dev server
-npm run dev
-```
-
-Open the printed URL (usually <http://localhost:5173>). Connect your wallet and start creating escrows.
-
-**Other frontend scripts:**
-
-```bash
-npm run build        # production build
-npm run test:run     # run unit tests
-npm run lint         # lint
-npm run typecheck    # type-check
-```
-
-### 2. Smart Contracts (optional — already deployed)
-
-```bash
-cd EscrowX            # repo root
-
-# run the contract test suite
-cargo test --workspace
-
-# build the optimized wasm
-cargo build --workspace --target wasm32-unknown-unknown --release
-```
-
-To deploy your **own** instances, install the [Stellar CLI](https://developers.stellar.org/docs/tools/developer-tools/cli/stellar-cli), then `stellar contract deploy` both wasm files, call `initialize` on each to bind them, and put the new contract IDs into `frontend/.env`.
-
-### Environment variables (`frontend/.env`)
-
-| Variable | Description |
-|---|---|
-| `VITE_CONTRACT_ID` | Escrow contract id (the only contract the frontend calls) |
-| `VITE_VAULT_ID` | PaymentVault contract id (display only) |
-| `VITE_NETWORK` | `testnet` \| `mainnet` \| `futurenet` |
-| `VITE_SOROBAN_RPC_URL` | Soroban RPC endpoint (optional override) |
-| `VITE_TOKEN_ID` | Payment asset contract id (defaults to native XLM SAC on testnet) |
 
 ---
 

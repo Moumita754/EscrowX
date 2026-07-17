@@ -106,7 +106,7 @@ EscrowX/
 ## 📸 Screenshots
 
 ### Landing page
-![Landing page](screenshot/landing_page.png)
+![Landing page](./screenshot/landing_page.png)
 
 ### Dashboard
 ![Dashboard](screenshot/dashboard.png)

@@ -101,6 +101,7 @@ EscrowX/
 └── rust-toolchain.toml        # Pinned Rust toolchain + wasm target
 
 ---
+---
 
 ## 📸 Screenshots
 
@@ -126,6 +127,7 @@ EscrowX/
 ### phone responsive
 
 ![phone responsive](screenshot/ph_response.png)
+
 ---
 
 ## 🔄 CI/CD
